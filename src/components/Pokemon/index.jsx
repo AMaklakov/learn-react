@@ -1,8 +1,8 @@
-import React, {Component} from 'react';
-import {BackBtn, PokemonFullDescription} from './styles';
-import {getPokemonById} from '../../db';
-import {Loader} from '../Loader';
-import {Modal} from '../Modal/modal';
+import React, { Component } from 'react';
+import { getPokemonById } from '../../db';
+import { Loader } from '../Loader';
+import { Modal } from '../Modal/modal';
+import { BackBtn, PokemonFullDescription } from './styles';
 
 export class Pokemon extends Component {
 	loader = Loader;
@@ -14,7 +14,7 @@ export class Pokemon extends Component {
 
 		this.state = {
 			pokemon: {},
-			modal: {show: false}
+			modal: { show: false },
 		};
 	}
 
@@ -25,19 +25,19 @@ export class Pokemon extends Component {
 	getPokemon = async () => {
 		this.loader.showSpinner(this);
 
-		const {id} = this.props.match.params;
+		const { id } = this.props.match.params;
 
 		try {
 			// need a number
 			const pokemon = await getPokemonById(+id);
 
 			this.setState({
-				pokemon: pokemon
-			})
+				pokemon: pokemon,
+			});
 		} catch (e) {
 			this.setState({
 				errorMessage: e.message,
-				modal: {show: true}
+				modal: { show: true },
 			});
 		} finally {
 			this.loader.hideSpinner(this);
@@ -51,7 +51,12 @@ export class Pokemon extends Component {
 	callbackAfterError = () => this.getPokemon();
 
 	render() {
-		const {pokemon: {image, name, fullDescription, food}, errorMessage, showSpinner, modal} = this.state;
+		const {
+			pokemon: { image, name, fullDescription, food },
+			errorMessage,
+			showSpinner,
+			modal,
+		} = this.state;
 
 		return (
 			<div>
@@ -61,11 +66,11 @@ export class Pokemon extends Component {
 				<h1>{name}</h1>
 
 				<PokemonFullDescription>
-					<img src={image} alt={name}/>
+					<img src={image} alt={name} />
 					<p className="fullDescription">{fullDescription}</p>
 				</PokemonFullDescription>
 
-				<Modal modal={modal} errorMessage={errorMessage} beforeClose={this.callbackAfterError}/>
+				<Modal modal={modal} errorMessage={errorMessage} beforeClose={this.callbackAfterError} />
 			</div>
 		);
 	}

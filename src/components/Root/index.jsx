@@ -1,9 +1,9 @@
-import React, {Component} from 'react';
-import {PokemonHolder} from '../PokemonHolder';
+import React, { Component } from 'react';
 import SearchField from 'react-search-field';
-import {Loader} from '../Loader';
-import {getPokemons} from '../../db';
-import {Modal} from '../Modal/modal';
+import { getPokemons } from '../../db';
+import { Loader } from '../Loader';
+import { Modal } from '../Modal/modal';
+import { PokemonHolder } from '../PokemonHolder';
 
 export class Root extends Component {
 	loader = Loader;
@@ -15,8 +15,8 @@ export class Root extends Component {
 			pokemons: [],
 			showSpinner: false,
 			modal: {
-				show: false
-			}
+				show: false,
+			},
 		};
 	}
 
@@ -24,23 +24,23 @@ export class Root extends Component {
 		this.findPokemons();
 	}
 
-	findCallback = (val) => this.findPokemons(val);
+	findCallback = val => this.findPokemons(val);
 
 	findCallbackAfterError = () => this.findPokemons();
 
-	findPokemons = async (value) => {
+	findPokemons = async value => {
 		this.loader.showSpinner(this);
 
 		try {
 			const pokemons = await getPokemons(value);
 
 			this.setState({
-				pokemons: pokemons
+				pokemons: pokemons,
 			});
 		} catch (e) {
 			this.setState({
 				errorMessage: e.message,
-				modal: {show: true}
+				modal: { show: true },
 			});
 		} finally {
 			this.loader.hideSpinner(this);
@@ -48,20 +48,17 @@ export class Root extends Component {
 	};
 
 	render() {
-		const {pokemons, showSpinner, errorMessage, modal} = this.state;
+		const { pokemons, showSpinner, errorMessage, modal } = this.state;
 
 		return (
 			<div className="App">
 				{this.loader.getLoader(showSpinner)}
 
-				<SearchField
-					placeholder='Start typing'
-					onChange={this.findCallback}
-				/>
+				<SearchField placeholder="Start typing" onChange={this.findCallback} />
 
-				<PokemonHolder pokemons={pokemons}/>
+				<PokemonHolder pokemons={pokemons} />
 
-				<Modal modal={modal} errorMessage={errorMessage} beforeClose={this.findCallbackAfterError}/>
+				<Modal modal={modal} errorMessage={errorMessage} beforeClose={this.findCallbackAfterError} />
 			</div>
 		);
 	}

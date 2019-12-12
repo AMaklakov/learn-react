@@ -1,7 +1,7 @@
 const POKEMONS = require('./pokemons');
 
 export function getPokemons(filter) {
-	return new Promise((resolve) => {
+	return new Promise(resolve => {
 		filter = (filter && filter.toLowerCase()) || '';
 
 		if (Math.random() < 0.1) {
@@ -9,9 +9,9 @@ export function getPokemons(filter) {
 		}
 
 		setTimeout(() => {
-			const currentPokemons = POKEMONS
-				.filter(({name}) => name.toLowerCase().includes(filter))
-				.map(item => ({...item}));
+			const currentPokemons = POKEMONS.filter(({ name }) => name.toLowerCase().includes(filter)).map(item => ({
+				...item,
+			}));
 
 			resolve(currentPokemons);
 		}, Math.floor(250 + Math.random() * (1000 - 250)));
