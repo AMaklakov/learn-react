@@ -1,0 +1,41 @@
+[
+    {
+        "id": 1,
+        "name": "Барсик",
+        "image": "https://i.ytimg.com/vi/mK72EwuxZAU/hqdefault.jpg",
+        "description": "Suspendisse eu orci auctor, mattis felis ut, tristique dolor. Morbi congue nibh quis consectetur imperdiet. Aenean tincidunt neque at nisi tempor tincidunt. Quisque tincidunt dui at lorem pellentesque rhoncus. Fusce in felis vehicula, malesuada libero sodales, suscipit lacus.",
+        "food": [
+            "Mauris sed.",
+            "Morbi ultrices.",
+            "Quisque posuere.",
+            "Proin sodales."
+        ],
+        "fullDescription": "Duis bibendum ultricies dolor et sagittis. Donec cursus tortor non volutpat malesuada. Aliquam vitae aliquet est. Etiam feugiat nisl urna, eu pellentesque ex semper ut. Donec tristique purus arcu, sed viverra felis dapibus laoreet. Donec ut risus gravida, interdum ex eget, consectetur lectus. Nullam pretium ligula vitae ligula efficitur, et sodales ex luctus. Pellentesque nec diam aliquam, rhoncus metus quis, rhoncus nisi. Maecenas aliquam massa eleifend purus scelerisque venenatis. Fusce eget euismod mi."
+    },
+    {
+        "id": 2,
+        "name": "Миша",
+        "image": "https://rozetked.me/images/uploads/dwoilp3BVjlE.jpg",
+        "description": "Quisque tincidunt dui at lorem pellentesque rhoncus. Fusce in felis vehicula, malesuada libero sodales, suscipit lacus.",
+        "food": [
+            "Mauris sed.",
+            "Morbi ultrices.",
+            "Quisque posuere.",
+            "Proin sodales."
+        ],
+        "fullDescription": "Duis bibendum ultricies dolor et sagittis. Donec cursus tortor non volutpat malesuada. Aliquam vitae aliquet est. Etiam feugiat nisl urna, eu pellentesque ex semper ut. Donec tristique purus arcu, sed viverra felis dapibus laoreet. Donec ut risus gravida, interdum ex eget, consectetur lectus. Nullam pretium ligula vitae ligula efficitur, et sodales ex luctus. Pellentesque nec diam aliquam, rhoncus metus quis, rhoncus nisi. Maecenas aliquam massa eleifend purus scelerisque venenatis. Fusce eget euismod mi."
+    },
+    {
+        "id": 3,
+        "name": "Бутер",
+        "image": "https://medialeaks.ru/wp-content/uploads/2017/10/catbread-03-600x400.jpg",
+        "description": "Aliquam lacinia purus eget ornare convallis.",
+        "food": [
+            "Mauris sed.",
+            "Morbi ultrices.",
+            "Quisque posuere.",
+            "Proin sodales."
+        ],
+        "fullDescription": "Duis bibendum ultricies dolor et sagittis. Donec cursus tortor non volutpat malesuada. Aliquam vitae aliquet est. Etiam feugiat nisl urna, eu pellentesque ex semper ut. Donec tristique purus arcu, sed viverra felis dapibus laoreet. Donec ut risus gravida, interdum ex eget, consectetur lectus. Nullam pretium ligula vitae ligula efficitur, et sodales ex luctus. Pellentesque nec diam aliquam, rhoncus metus quis, rhoncus nisi. Maecenas aliquam massa eleifend purus scelerisque venenatis. Fusce eget euismod mi."
+    }
+]
