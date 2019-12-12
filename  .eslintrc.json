@@ -1,0 +1,53 @@
+{
+	"env": {
+		"browser": true,
+		"node": true,
+		"jest": true
+	},
+	"plugins": ["ternaries"],
+	"extends": [
+		"react-app",
+		"airbnb",
+		"plugin:react/recommended",
+		"prettier",
+		"prettier/react",
+		"plugin:security/recommended",
+		"plugin:react-perf/all",
+		"plugin:jsx-a11y/recommended",
+		"plugin:promise/recommended"
+	],
+	"parser": "babel-eslint",
+	"parserOptions": {
+		"allowImportExportEverywhere": true
+	},
+	"settings": {
+		"import/resolver": {
+			"node": {
+				"paths": ["src/"]
+			}
+		}
+	},
+	"rules": {
+		"react/jsx-filename-extension": [0],
+		"import/prefer-default-export": 0,
+		"no-console": 0,
+		"class-methods-use-this": 0,
+		"semi": 0,
+		"semi-style": 0,
+		"ternaries/no-null-ternary": 2,
+		"ternaries/no-empty-ternary": 2,
+		"security/detect-object-injection": 0,
+		"react-perf/jsx-no-jsx-as-prop": 0,
+		"jsx-a11y/anchor-is-valid": [
+			"error",
+			{
+				"components": ["Link"],
+				"specialLink": ["to"],
+				"aspects": []
+			}
+		],
+		"react-perf/jsx-no-new-object-as-prop": 0,
+		"react-perf/jsx-no-new-array-as-prop": 0,
+		"react-perf/jsx-no-new-function-as-prop": 0
+	}
+}

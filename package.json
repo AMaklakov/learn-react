@@ -4,6 +4,10 @@
 	"private": true,
 	"dependencies": {
 		"@babel/runtime": "7.0.0-beta.55",
+		"eslint-plugin-flowtype": "^4.5.2",
+		"eslint-plugin-import": "^2.19.1",
+		"eslint-plugin-react": "^7.17.0",
+		"eslint-plugin-react-hooks": "^2.3.0",
 		"react": "^16.8.6",
 		"react-dom": "^16.8.6",
 		"react-router-dom": "^5.0.0",
@@ -18,7 +22,9 @@
 		"start": "react-scripts start",
 		"build": "react-scripts build",
 		"test": "react-scripts test",
-		"eject": "react-scripts eject"
+		"eject": "react-scripts eject",
+		"prettier": "prettier --write -l 'src/**/*.{js,jsx}'",
+		"eslint": "eslint src"
 	},
 	"eslintConfig": {
 		"extends": "react-app"
@@ -39,10 +45,14 @@
 		"babel-eslint": "^10.0.3",
 		"cz-conventional-changelog": "3.0.2",
 		"eslint": "^6.7.2",
-		"eslint-config-airbnb": "^18.0.1",
-		"eslint-config-prettier": "^6.7.0",
-		"eslint-plugin-import": "^2.19.1",
-		"eslint-plugin-react": "^7.17.0",
+		"eslint-config-airbnb": "^17.1.0",
+		"eslint-config-prettier": "^5.0.0",
+		"eslint-config-react-app": "^5.1.0",
+		"eslint-plugin-jsx-a11y": "^6.2.1",
+		"eslint-plugin-promise": "^4.1.1",
+		"eslint-plugin-react-perf": "^3.2.0",
+		"eslint-plugin-security": "^1.4.0",
+		"eslint-plugin-ternaries": "^1.1.0",
 		"husky": "^3.1.0",
 		"lint-staged": "^9.5.0",
 		"prettier": "^1.19.1",
@@ -61,7 +71,7 @@
 	"lint-staged": {
 		"src/**/*.{js,jsx}": [
 			"eslint",
-			"pretty-quick — staged",
+			"prettier",
 			"git add"
 		]
 	}
