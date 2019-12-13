@@ -10,6 +10,8 @@ export class Modal extends Component {
 	};
 
 	componentWillReceiveProps(nextProps) {
+		console.log('Modal', this.animated, nextProps);
+
 		if (nextProps.modal.show) {
 			this.animated && this.animated.show();
 		}
