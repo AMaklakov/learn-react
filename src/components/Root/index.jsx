@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import SearchField from 'react-search-field';
 import { PokemonService } from '../../services/pokemon.service';
 import { Loader } from '../Loader';
-import { Modal } from '../Modal/modal';
+import { Modal } from '../Modal';
 import { PokemonHolder } from '../PokemonHolder';
 
 export class Root extends Component {
@@ -28,16 +28,16 @@ export class Root extends Component {
 
 	findCallbackAfterError = () => this.findPokemons();
 
-	findPokemons = async value => {
+	findPokemons = async filterValue => {
 		this.setState({ showSpinner: true });
 
 		try {
-			const pokemons = await PokemonService.getPokemons(value);
+			const pokemons = await PokemonService.getPokemons(filterValue);
 
 			this.setState({ pokemons });
 		} catch (e) {
 			this.setState({
-				errorMessage: e.message,
+				errorMessage: e,
 				modal: { show: true },
 			});
 		} finally {
