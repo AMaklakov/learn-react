@@ -8,6 +8,7 @@
 		"eslint-plugin-import": "^2.19.1",
 		"eslint-plugin-react": "^7.17.0",
 		"eslint-plugin-react-hooks": "^2.3.0",
+		"json-server": "^0.15.1",
 		"react": "^16.12.0",
 		"react-dom": "^16.12.0",
 		"react-router-dom": "^5.1.2",
@@ -20,6 +21,7 @@
 	"scripts": {
 		"prestart": "yarn",
 		"start": "react-scripts start",
+		"start:backend": "json-server --watch db.json --port 3001",
 		"build": "react-scripts build",
 		"test": "react-scripts test",
 		"eject": "react-scripts eject",

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { getPokemonById } from '../../db';
+import { PokemonService } from '../../services/pokemon.service';
 import { Loader } from '../Loader';
 import { Modal } from '../Modal/modal';
 import { BackBtn, PokemonFullDescription } from './styles';
@@ -9,8 +9,6 @@ export class Pokemon extends Component {
 
 	constructor(props) {
 		super(props);
-
-		console.log('props ->', props);
 
 		this.state = {
 			pokemon: {},
@@ -29,11 +27,10 @@ export class Pokemon extends Component {
 
 		try {
 			// need a number
-			const pokemon = await getPokemonById(+id);
+			const pokemonWrapper = await PokemonService.getPokemonById(+id);
+			const pokemon = pokemonWrapper[0];
 
-			this.setState({
-				pokemon: pokemon,
-			});
+			this.setState({ pokemon });
 		} catch (e) {
 			this.setState({
 				errorMessage: e.message,
@@ -52,7 +49,7 @@ export class Pokemon extends Component {
 
 	render() {
 		const {
-			pokemon: { image, name, fullDescription, food },
+			pokemon: { image, name, fullDescription },
 			errorMessage,
 			showSpinner,
 			modal,

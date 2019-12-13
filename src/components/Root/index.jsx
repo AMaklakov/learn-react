@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import SearchField from 'react-search-field';
-import { getPokemons } from '../../db';
+import { PokemonService } from '../../services/pokemon.service';
 import { Loader } from '../Loader';
 import { Modal } from '../Modal/modal';
 import { PokemonHolder } from '../PokemonHolder';
@@ -32,11 +32,9 @@ export class Root extends Component {
 		this.loader.showSpinner(this);
 
 		try {
-			const pokemons = await getPokemons(value);
+			const pokemons = await PokemonService.getPokemons(value);
 
-			this.setState({
-				pokemons: pokemons,
-			});
+			this.setState({ pokemons });
 		} catch (e) {
 			this.setState({
 				errorMessage: e.message,
