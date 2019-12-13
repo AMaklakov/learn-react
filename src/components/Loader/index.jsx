@@ -1,50 +1,42 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import * as Spinner from 'react-spinkit';
 
-export class Loader {
-	static getLoader(show) {
+export const Loader = ({ needShow }) => {
+	const [show, setShow] = useState(needShow);
+
+	useEffect(() => {
+		setTimeout(() => setShow(needShow), needShow ? 0 : 500);
+	}, [needShow]);
+
+	if (show) {
 		return (
-			<Spinner
+			<div
 				style={{
-					display: show ? 'block' : 'none',
 					position: 'absolute',
-					top: '50%',
-					left: '50%',
-					transform: 'translate(-50%, -50%)',
-					width: '10vw',
-					height: '10vw',
-					zIndex: 1000,
+					top: 0,
+					left: 0,
+					width: '100vw',
+					height: '100vh',
+					backgroundColor: 'rgba(255, 255, 255, 0.7)',
 				}}
-				color={'#' + Math.floor(Math.random() * 16777215).toString(16)}
-				name="circle"
-				fadeIn="none"
-			/>
+			>
+				<Spinner
+					style={{
+						position: 'absolute',
+						top: '50%',
+						left: '50%',
+						transform: 'translate(-50%, -50%)',
+						width: '10vw',
+						height: '10vw',
+						zIndex: 1000,
+					}}
+					color={'#' + Math.floor(Math.random() * 16777215).toString(16)}
+					name="circle"
+					fadeIn="none"
+				/>
+			</div>
 		);
 	}
 
-	static showSpinner(that, callback) {
-		that.setState(
-			{
-				showSpinner: true,
-			},
-			() => {
-				if (callback) {
-					callback();
-				}
-			}
-		);
-	}
-
-	static hideSpinner(that, callback) {
-		that.setState(
-			{
-				showSpinner: false,
-			},
-			() => {
-				if (callback) {
-					callback();
-				}
-			}
-		);
-	}
-}
+	return null;
+};

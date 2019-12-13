@@ -29,7 +29,7 @@ export class Root extends Component {
 	findCallbackAfterError = () => this.findPokemons();
 
 	findPokemons = async value => {
-		this.loader.showSpinner(this);
+		this.setState({ showSpinner: true });
 
 		try {
 			const pokemons = await PokemonService.getPokemons(value);
@@ -41,7 +41,7 @@ export class Root extends Component {
 				modal: { show: true },
 			});
 		} finally {
-			this.loader.hideSpinner(this);
+			this.setState({ showSpinner: false });
 		}
 	};
 
@@ -50,7 +50,7 @@ export class Root extends Component {
 
 		return (
 			<div className="App">
-				{this.loader.getLoader(showSpinner)}
+				<Loader needShow={showSpinner}></Loader>
 
 				<SearchField placeholder="Start typing" onChange={this.findCallback} />
 

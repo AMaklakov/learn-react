@@ -1,74 +1,54 @@
-import React, { Component } from 'react';
+import React, { useEffect, useState } from 'react';
 import { PokemonService } from '../../services/pokemon.service';
 import { Loader } from '../Loader';
 import { Modal } from '../Modal/modal';
 import { BackBtn, PokemonFullDescription } from './styles';
 
-export class Pokemon extends Component {
-	loader = Loader;
+const getPokemonById = async id => {
+	const pokemonWrapper = await PokemonService.getPokemonById(+id);
+	return pokemonWrapper[0];
+};
 
-	constructor(props) {
-		super(props);
+export const Pokemon = props => {
+	const [showSpinner, setShowSpinner] = useState(true);
 
-		this.state = {
-			pokemon: {},
-			modal: { show: false },
-		};
-	}
+	const [pokemon, setPokemon] = useState({});
+	const [modal, setModal] = useState({});
+	const [errorMessage, setErrorMessage] = useState();
 
-	componentDidMount() {
-		this.getPokemon();
-	}
+	const back = () => props.history.goBack();
 
-	getPokemon = async () => {
-		this.loader.showSpinner(this);
-
-		const { id } = this.props.match.params;
+	const fetchPokemon = () => {
+		setShowSpinner(true);
+		const { id } = props.match.params;
 
 		try {
 			// need a number
-			const pokemonWrapper = await PokemonService.getPokemonById(+id);
-			const pokemon = pokemonWrapper[0];
-
-			this.setState({ pokemon });
+			getPokemonById(id).then(res => setPokemon(res));
 		} catch (e) {
-			this.setState({
-				errorMessage: e.message,
-				modal: { show: true },
-			});
+			setErrorMessage(e.message);
+			setModal({ show: true });
 		} finally {
-			this.loader.hideSpinner(this);
+			console.log('show false');
+			setShowSpinner(false);
 		}
 	};
 
-	back = () => {
-		this.props.history.goBack();
-	};
+	useEffect(() => fetchPokemon(), []);
 
-	callbackAfterError = () => this.getPokemon();
+	return (
+		<div>
+			<Loader needShow={showSpinner}></Loader>
 
-	render() {
-		const {
-			pokemon: { image, name, fullDescription },
-			errorMessage,
-			showSpinner,
-			modal,
-		} = this.state;
+			<BackBtn onClick={back}>&laquo; Back</BackBtn>
+			<h1>{pokemon.name}</h1>
 
-		return (
-			<div>
-				{this.loader.getLoader(showSpinner)}
+			<PokemonFullDescription>
+				<img src={pokemon.image} alt={pokemon.name} />
+				<p className="fullDescription">{pokemon.fullDescription}</p>
+			</PokemonFullDescription>
 
-				<BackBtn onClick={this.back}>&laquo; Back</BackBtn>
-				<h1>{name}</h1>
-
-				<PokemonFullDescription>
-					<img src={image} alt={name} />
-					<p className="fullDescription">{fullDescription}</p>
-				</PokemonFullDescription>
-
-				<Modal modal={modal} errorMessage={errorMessage} beforeClose={this.callbackAfterError} />
-			</div>
-		);
-	}
-}
+			<Modal modal={modal} errorMessage={errorMessage} beforeClose={fetchPokemon} />
+		</div>
+	);
+};
